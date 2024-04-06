@@ -167,9 +167,9 @@ export default function Sidebar({
                 <div>
                   <hr className='h-px my-8 bg-gray-200 border-0 dark:bg-gray-700'></hr>
                   <div className="mt-auto flex flex-col items-start  justify-center gap-1 w-full h-auto">
-                    <span className=" text-white box-size flex items-center justify-center text-headline font-bold w-[50px] h-[50px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-200 from-0% to-gold to-70%">HF</span>
-                    <span className='text-text font-normal text-gray-700' aria-hidden="true">Heitor Fernandes</span>
-                    <span className='text-text font-normal text-gray-400' aria-hidden="true">@heitor05</span>
+                    <span className=" text-white box-size flex items-center justify-center text-headline font-bold w-[50px] h-[50px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-200 from-0% to-gold to-70%">CS</span>
+                    <span className='text-text font-normal text-gray-700' aria-hidden="true">Code Sailors</span>
+                    <span className='text-text font-normal text-gray-400' aria-hidden="true">@codesailors</span>
                   </div>
                 </div>
               </ul>
