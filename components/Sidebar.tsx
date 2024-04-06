@@ -148,7 +148,7 @@ export default function Sidebar({
                             item.current
                               ? 'bg-purple-100 text-purple-200 font-extrabold text-text'
                               : 'text-gray-500 text-text font-normal hover:text-purple-200 hover:bg-gray-200',
-                            'group flex gap-x-3 rounded-md p-[12px] text-sm leading-6 font-semibold'
+                            'group flex gap-x-3 rounded-md pl-[14px] pt-[13px] pb-[11px] text-sm leading-6 font-semibold'
                           )}
                         >
                           <item.icon

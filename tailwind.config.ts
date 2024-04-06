@@ -35,6 +35,14 @@ const config: Config = {
         200: '#901BC7',
       },
       'gold': '#EDA925',
+      'green':{
+        100: '#B2FF97',
+        200: '#1E3716',
+      },
+      'red':{
+        100: '#FFC3C3',
+        200: '#471A1A',
+      },
     },
     fontSize: {
       'xltitle': '60px',
