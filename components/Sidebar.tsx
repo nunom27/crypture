@@ -10,7 +10,9 @@ import {
   HomeIcon,
   WalletIcon,
   CurrencyDollarIcon,
-  SparklesIcon
+  SparklesIcon,
+  Cog6ToothIcon,
+  ArrowRightStartOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 
 const navigation = [
@@ -146,8 +148,8 @@ export default function Sidebar({
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-purple-100 text-purple-200 font-extrabold text-text'
-                              : 'text-gray-500 text-text font-normal hover:text-purple-200 hover:bg-gray-200',
+                              ? 'bg-purple-100 text-purple-200 font-medium text-text rounded-[14px] border-purple-200 border-2 border-opacity-[6%]'
+                              : 'text-gray-500 text-text font-medium rounded-[14px] border-black border-2 border-opacity-0 hover:text-purple-200 hover:border-purple-100 hover:bg-purple-100',
                             'group flex gap-x-3 rounded-md pl-[14px] pt-[13px] pb-[11px] text-sm leading-6 font-semibold'
                           )}
                         >
@@ -165,11 +167,21 @@ export default function Sidebar({
                   </ul>
                 </li>
                 <div>
-                  <hr className='h-px my-8 bg-gray-200 border-0 dark:bg-gray-700'></hr>
-                  <div className="mt-auto flex flex-col items-start  justify-center gap-1 w-full h-auto">
-                    <span className=" text-white box-size flex items-center justify-center text-headline font-bold w-[50px] h-[50px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-200 from-0% to-gold to-70%">CS</span>
-                    <span className='text-text font-normal text-gray-700' aria-hidden="true">Code Sailors</span>
-                    <span className='text-text font-normal text-gray-400' aria-hidden="true">@codesailors</span>
+                  <hr className='h-[2px] my-4 opacity-[8%] bg-black'></hr>
+                  <div className="mt-auto flex flex-col items-start  justify-center gap-[2px] w-full h-auto m-[13px]">
+                    <span className="text-white box-size flex items-center justify-center text-text font-medium w-[50px] h-[50px] rounded-full bg-gradient-to-t from-purple-200-to-gold from-purple-200 from-0% to-gold to-70% mb-[8px]">CS</span>
+                    <span className='text-text font-medium text-gray-700' aria-hidden="true">Code Sailors</span>
+                    <span className='text-text font-medium text-gray-400' aria-hidden="true">@codesailors</span>
+                    <div className='flex flex-row gap-[16px]'>
+                        <div className='flex flex-row mt-[8px]'>
+                          <Cog6ToothIcon className='w-[24px] h-[24px] text-purple-200 mr-[6px]'></Cog6ToothIcon>
+                          <span className="text-purple-200 text-text">Settings</span>
+                        </div>
+                        <div className='flex flex-row mt-[8px]'>
+                          <ArrowRightStartOnRectangleIcon className='w-[24px] h-[24px] text-purple-200 mr-[6px]'></ArrowRightStartOnRectangleIcon>
+                          <span className="text-purple-200 text-text">Log Out</span>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </ul>
