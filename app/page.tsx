@@ -5,7 +5,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <Sidebar>
-      <CoinCharts />
+      <div className="h-[500px] mx-16 flex flex-col">
+        <CoinCharts />
+      </div>
     </Sidebar>
   );
 }
