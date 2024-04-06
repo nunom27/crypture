@@ -10,23 +10,33 @@ const CoinsList = async () => {
   });
 
   return (
-    <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
-      {data.map((item: any, index: number) => {
-        // const tickerResponse = await axios.get(`https://api.uphold.com/v0/ticker/USD-EUR`);
-        // const askValue = tickerResponse.data.ask;
-        return (
-          <div key={index} className="flex flex-col p-3 items-center">
-            <button
-              type="button"
-              className="rounded-md bg-white px-4.5 py-4.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 box-border h-32 w-32 p-4 border-1 flex flex-col items-center justify-center"
-            >
-              <Image src={item.image} alt={item.name} width={50} height={50} />
-              <h2 className="mt-3 truncate max-w-full hover:overflow-visible hover:text-wrap hover:whitespace-normal">{item.name}</h2>
-            </button>
+    <div className="flex flex-col justify-start items-start w-screen h-auto gap-10">
+      <form className="flex justify-start items-start w-full max-w-lg">   
+          <label className="sr-only">Search</label>
+          <div className="flex justify-start w-full">
+            <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos, Design Templates..." required />
           </div>
-
-        );
-      })}
+          <button type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>Search
+          </button>
+      </form>
+      <div className="flex flex-wrap gap-5 max-w-[1000px]">
+        {data.map((item: any, index: number) => {
+          return (
+            <div key={index}>
+              <button
+                type="button"
+                className="flex p-3 items-center gap-5 min-w-[300px] w-[33%] h-auto rounded-md bg-white px-4.5 py-4.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 box-border h-32 w-32 p-4 border-1"
+              >
+                <Image src={item.image} alt={item.name} width={50} height={50} />
+                <h2 className="text-text font-medium max-w-full hover:overflow-visible hover:text-wrap hover:whitespace-normal">{item.name}</h2>
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

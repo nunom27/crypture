@@ -1,6 +1,7 @@
 "use client";
 import { Children, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { useLocation } from 'react-router-dom'
 import {
   Bars3Icon,
   CalendarIcon,
@@ -13,11 +14,12 @@ import {
   SparklesIcon
 } from '@heroicons/react/24/outline'
 
+
 const navigation = [
-  { name: 'Overview', href: '#', icon: HomeIcon, current: true },
-  { name: 'Wallet', href: '#', icon: WalletIcon, current: false },
-  { name: 'Explore', href: '#', icon: CurrencyDollarIcon, current: false },
-  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: false },
+  { name: 'Overview', href: '/', icon: HomeIcon, current: location.pathname === '/' },
+  { name: 'Wallet', href: '#', icon: WalletIcon, current: location.pathname === '/wallet' },
+  { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: location.pathname === '/explore' },
+  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
 ]
 
 
@@ -31,7 +33,6 @@ export default function Sidebar({
     children: React.ReactNode;
   }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
   return (
     <>
       {/*
@@ -193,8 +194,8 @@ export default function Sidebar({
           </a>
         </div>
 
-        <main className="py-10 lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+        <main className="py-10 pr-4 lg:pl-72 w-full h-screen">
+          <div className="px-4 sm:px-6 lg:px-8 w-full">{children}</div>
         </main>
       </div>
     </>
