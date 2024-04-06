@@ -22,13 +22,13 @@ const CoinsList = async () => {
               </svg>Search
           </button>
       </form>
-      <div className="flex flex-wrap gap-5 max-w-[1000px]">
+      <div className="flex flex-wrap w-[calc(100% - 32px)]">
         {data.map((item: any, index: number) => {
           return (
             <div key={index}>
               <button
                 type="button"
-                className="flex p-3 items-center gap-5 min-w-[300px] w-[33%] h-auto rounded-md bg-white px-4.5 py-4.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 box-border h-32 w-32 p-4 border-1"
+                className="flex items-center gap-[20px] w-[100%] min-w-[300px] h-auto rounded-[15px] bg-gray-100 text-text text-black hover:bg-gray-200 box-border p-[16px] border-none"
               >
                 <Image src={item.image} alt={item.name} width={50} height={50} />
                 <h2 className="text-text font-medium max-w-full hover:overflow-visible hover:text-wrap hover:whitespace-normal">{item.name}</h2>
