@@ -8,11 +8,15 @@ import {
   ChartPieIcon,
   DocumentDuplicateIcon,
   FolderIcon,
+  Cog6ToothIcon,
+  ArrowRightStartOnRectangleIcon,
+} from '@heroicons/react/24/outline'
+import {
   HomeIcon,
   WalletIcon,
   CurrencyDollarIcon,
-  SparklesIcon
-} from '@heroicons/react/24/outline'
+  SparklesIcon,
+} from '@heroicons/react/24/solid'
 
 
 const navigation = [
@@ -101,7 +105,7 @@ export default function Sidebar({
                                     item.current
                                       ? 'text-gray-100'
                                       : 'text-gray-700 hover:text-indigo-600 hover:bg-white',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                    'group flex gap-x-3 rounded-md p-2 text-text leading-6 font-semibold'
                                   )}
                                 >
                                   <item.icon
@@ -147,15 +151,15 @@ export default function Sidebar({
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-purple-100 text-purple-200 font-extrabold text-text'
-                              : 'text-gray-500 text-text font-normal hover:text-purple-200 hover:bg-gray-200',
-                            'group flex gap-x-3 rounded-md pl-[14px] pt-[13px] pb-[11px] text-sm leading-6 font-semibold'
+                              ? 'bg-purple-100 text-purple-200 font-extrabold text-text rounded-[15px] border-purple-200 border-2 border-opacity-[6%]'
+                              : 'text-gray-500 text-text font-medium rounded-[15px] border-black border-2 border-opacity-0 hover:text-purple-200 hover:border-purple-100 hover:bg-purple-100',
+                            'group flex gap-x-3 pl-[11px] pt-[10px] pb-[8px] text-text leading-6 font-medium'
                           )}
                         >
                           <item.icon
                             className={classNames(
                               item.current ? 'text-purple-200' : 'text-gray-500 group-hover:text-purple-200',
-                              'h-[26px] w-[26px] shrink-0'
+                              'h-[23px] w-[23px] shrink-0'
                             )}
                             aria-hidden="true"
                           />
@@ -166,11 +170,21 @@ export default function Sidebar({
                   </ul>
                 </li>
                 <div>
-                  <hr className='h-px my-8 bg-gray-200 border-0 dark:bg-gray-700'></hr>
-                  <div className="mt-auto flex flex-col items-start  justify-center gap-1 w-full h-auto">
-                    <span className=" text-white box-size flex items-center justify-center text-headline font-bold w-[50px] h-[50px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-200 from-0% to-gold to-70%">CS</span>
-                    <span className='text-text font-normal text-gray-700' aria-hidden="true">Code Sailors</span>
-                    <span className='text-text font-normal text-gray-400' aria-hidden="true">@codesailors</span>
+                  <hr className='h-[2px] my-4 opacity-[8%] bg-black'></hr>
+                  <div className="mt-auto flex flex-col items-start  justify-center gap-[2px] w-full h-auto m-[13px]">
+                    <span className="text-white box-size flex items-center justify-center text-text font-medium w-[40px] h-[40px] rounded-full bg-gradient-to-t from-purple-200-to-gold from-purple-200 from-0% to-gold to-70% mb-[8px]">CS</span>
+                    <span className='text-text font-medium text-gray-700' aria-hidden="true">Code Sailors</span>
+                    <span className='text-text font-medium text-gray-400' aria-hidden="true">@codesailors</span>
+                    <div className='flex flex-row gap-[16px]'>
+                        <div className='flex flex-row mt-[8px]'>
+                          <Cog6ToothIcon className='w-[23px] h-[23px] text-purple-200 mr-[6px]'></Cog6ToothIcon>
+                          <span className="text-purple-200 text-text">Settings</span>
+                        </div>
+                        <div className='flex flex-row mt-[8px]'>
+                          <ArrowRightStartOnRectangleIcon className='w-[23px] h-[23px] text-purple-200 mr-[6px]'></ArrowRightStartOnRectangleIcon>
+                          <span className="text-purple-200 text-text">Log Out</span>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </ul>
@@ -183,7 +197,7 @@ export default function Sidebar({
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
+          <div className="flex-1 text-text font-semibold leading-6 text-gray-900">Dashboard</div>
           <a href="#">
             <span className="sr-only">Your profile</span>
             <img
