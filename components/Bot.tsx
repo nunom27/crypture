@@ -39,9 +39,9 @@ function Bot() {
                 </div>
             </div>
             <div className='flex flex-row mt-[8px]'>
-                            <ArrowRightIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></ArrowRightIcon>
-                            <span className="text-purple-200 text-text font-medium">Check your wallet</span>
-                        </div>
+                <ArrowRightIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></ArrowRightIcon>
+                <span className="text-purple-200 text-text font-medium">Go to Wallet</span>
+            </div>
             <div className='w-full flex flex-col justify-left gap-[2px]'>
                 <div className='bg-black w-full h-[1.5px] opacity-10 my-[10px]'></div>
                 <div className='text-text font-extrabold opacity-50'>NEW INVESTMENT</div>
