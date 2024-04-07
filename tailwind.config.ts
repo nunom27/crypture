@@ -43,6 +43,7 @@ const config: Config = {
       'red':{
         100: '#FFC3C3',
         200: '#471A1A',
+        300: '#E12E2E'
       },
     },
     fontSize: {
