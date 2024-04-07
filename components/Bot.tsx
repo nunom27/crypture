@@ -1,50 +1,69 @@
 "use client";
 // TradingViewWidget.jsx
 import { SetStateAction, useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
 function Bot() {
 
     const [selectedCrypto, setSelectedCrypto] = useState('');
-    const [selectedRisk, setSelectedRisk] = useState('');
+    const [selectedRisk, setSelectedRisk] = useState(-1);
     const [selectedCapital, setSelectedCapital] = useState('');
+
+    const updateBot = async (event: any) => {
+        event.preventDefault(); // Prevent the form from refreshing the page
+
+        try {
+            const response = await axios.post("http://127.0.0.1:5000/update_bot", {
+                coin: selectedCrypto,
+                risk: selectedRisk,
+                status: 'active'
+                // Add other data to send in the request body
+            });
+            console.log('Data posted:', response.data);
+            // Handle the response if needed
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
+    }
+
 
     return (
         <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
             <div className="text-mtitle leading-tight font-extrabold">Crypture Bot</div>
-            <form className='w-full flex flex-col gap-[15px] items-start'>
+            <form className='w-full flex flex-col gap-[15px] items-start' onSubmit={(event) => updateBot(event)}>
                 <span className='text-header font-extrabold'>Choose a cryptocurrency</span>
                 <div className="flex flex-wrap w-full gap-[10px]">
                     <div 
-                    onClick={() => setSelectedCrypto('crypto1')}
-                    style={{backgroundColor: selectedCrypto === 'crypto1' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedCrypto === 'crypto1' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedCrypto('BTC')}
+                    style={{backgroundColor: selectedCrypto === 'BTC' ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedCrypto === 'BTC' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[150px] h-[100px] rounded-[15px] flex flex-col items-center justify-center'
                     >
                         <span className='text-text font-bold'>BTC</span>
                         <span>Bitcoin</span>
                     </div>
                     <div 
-                    onClick={() => setSelectedCrypto('crypto2')}
-                    style={{backgroundColor: selectedCrypto === 'crypto2' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedCrypto === 'crypto2' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedCrypto('ETH')}
+                    style={{backgroundColor: selectedCrypto === 'ETH' ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedCrypto === 'ETH' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[150px] h-[100px] rounded-[15px] flex flex-col items-center justify-center'
                     >
                         <span className='text-text font-bold'>ETH</span>
                         <span>Ethereum</span>
                     </div>
                     <div 
-                    onClick={() => setSelectedCrypto('crypto3')}
-                    style={{backgroundColor: selectedCrypto === 'crypto3' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedCrypto === 'crypto3' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedCrypto('SOL')}
+                    style={{backgroundColor: selectedCrypto === 'SOL' ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedCrypto === 'SOL' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[150px] h-[100px] rounded-[15px] flex flex-col items-center justify-center'
                     >
                         <span className='text-text font-bold'>SOL</span>
                         <span>Solana</span>
                     </div>
                     <div 
-                    onClick={() => setSelectedCrypto('crypto4')}
-                    style={{backgroundColor: selectedCrypto === 'crypto4' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedCrypto === 'crypto4' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedCrypto('DOGE')}
+                    style={{backgroundColor: selectedCrypto === 'DOGE' ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedCrypto === 'DOGE' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[150px] h-[100px] rounded-[15px] flex flex-col items-center justify-center'
                     >
                         <span className='text-text font-bold'>DOGE</span>
@@ -54,9 +73,9 @@ function Bot() {
                 <span className='text-header font-extrabold mt-[10px]'>Choose a risk</span>
                 <div className="flex flex-wrap w-full gap-[10px]">
                     <div 
-                    onClick={() => setSelectedRisk('risklow')}
-                    style={{backgroundColor: selectedRisk === 'risklow' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedRisk === 'risklow' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedRisk(0)}
+                    style={{backgroundColor: selectedRisk === 0 ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedRisk === 0 ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[32%] h-auto rounded-[15px] p-[15px] box-border flex flex-col items-left justify-start'
                     >
                         <span className='text-text font-bold'>Low risk</span>
@@ -64,9 +83,9 @@ function Bot() {
                         <span className='mt-[15px]'><span className='text-text font-bold'>Performance: </span>percentage</span>
                     </div>
                     <div 
-                    onClick={() => setSelectedRisk('riskavg')}
-                    style={{backgroundColor: selectedRisk === 'riskavg' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedRisk === 'riskavg' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedRisk(1)}
+                    style={{backgroundColor: selectedRisk === 1 ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedRisk === 1 ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[32%] h-auto rounded-[15px] p-[15px] box-border flex flex-col items-left justify-start'
                     >
                         <span className='text-text font-bold'>Average risk</span>
@@ -74,9 +93,9 @@ function Bot() {
                         <span className='mt-[15px]'><span className='text-text font-bold'>Performance: </span>percentage</span>
                     </div>
                     <div 
-                    onClick={() => setSelectedRisk('riskhigh')}
-                    style={{backgroundColor: selectedRisk === 'riskhigh' ? '#F2E4F8' : '#F3F4F6',
-                            border: selectedRisk === 'riskhigh' ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
+                    onClick={() => setSelectedRisk(2)}
+                    style={{backgroundColor: selectedRisk === 2 ? '#F2E4F8' : '#F3F4F6',
+                            border: selectedRisk === 2 ? '1.5px solid #901BC7' : '1.5px solid rgba(0,0,0,0)'}}
                     className='w-[32%] h-auto rounded-[15px] p-[15px] box-border flex flex-col items-left justify-start'
                     >
                         <span className='text-text font-bold'>High risk</span>

@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import json
 import os
 from threading import Lock
-import signal
-import sys
+from datetime import datetime
+
 
 app = Flask(__name__)
 lock = Lock()
-
+CORS(app)
 
 empty_transaction = {
     "from": "",
@@ -21,9 +22,10 @@ init_user = {
     "balance": {},
     "transactions": [],
     "bot": {
-        "status": "off",
+        "status": "inactive",
         "coin": "BTC",
         "target": 0.0,
+        "risk": 1,
         "balance_fiat": 1000.0,
         "balance_crypto": 0.0
     }
@@ -93,6 +95,8 @@ def add_transaction():
     with lock:
         user = get_user()
         transaction = request.json
+        if "date" not in transaction:
+            transaction["date"] = datetime.now().timestamp()
         user["transactions"].append(transaction)
         update_user(user)
     return jsonify(user)
@@ -174,6 +178,7 @@ def update_bot():
         bot["status"] = request.json.get('status', bot["status"])
         bot["coin"] = request.json.get('coin', bot["coin"])
         bot["target"] = request.json.get('target', bot["target"])
+        bot["risk"] = request.json.get('risk', bot["risk"])
         bot["balance_fiat"] = request.json.get('balance_fiat', bot["balance_fiat"])
         bot["balance_crypto"] = request.json.get('balance_crypto', bot["balance_crypto"])
         update_user(user)

@@ -1,1 +1,1 @@
-{"balance": {"ETH": 800, "USD": 400}, "transactions": [], "bot": {"status": "off", "coin": "BTC", "target": 0.0, "balance_fiat": 27778374.23403804, "balance_crypto": 0}}
+{"balance": {}, "transactions": [], "bot": {"status": "active", "coin": "BTC", "target": 0.0, "risk": 2, "balance_fiat": 1000.0, "balance_crypto": 0.0}}
