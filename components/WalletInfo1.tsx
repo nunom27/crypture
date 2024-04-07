@@ -2,13 +2,17 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CurrencyDollarIcon, CircleStackIcon } from '@heroicons/react/24/solid'
-
+import PopUp1 from './PopUp1';
+import PopUp2 from './PopUp2';
 import {
     PlusIcon,
     MinusIcon
   } from '@heroicons/react/24/outline'
 
 function WalletInfo1() {
+    const [popUpOpened1, setPopUpOpened1] = useState(false)
+    const [popUpOpened2, setPopUpOpened2] = useState(false)
+
   return(
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
         <div className='flex flex-row w-full gap-[10px]'>
@@ -54,14 +58,24 @@ function WalletInfo1() {
                 </div>
             </div>
         </div>
-        <div className="flex flex-row gap-[15px]">
+        <div className="flex flex-row gap-[20px]">
             <div className='flex flex-row mt-[8px]'>
-                <PlusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></PlusIcon>
-                <span className="text-purple-200 text-text font-medium">Buy crypto</span>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened1(true)}>
+                    <PlusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></PlusIcon>
+                    <p className="w-50">Buy crypto</p>
+                </button>
+                <div className="none">
+                    {popUpOpened1 === true && <PopUp1 popUpOpened1={popUpOpened1} setPopUpOpened1={setPopUpOpened1} />} 
+                </div>
             </div>
             <div className='flex flex-row mt-[8px]'>
-                <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
-                <span className="text-purple-200 text-text font-medium">Sell crypto</span>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened1(true)}>
+                    <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
+                    <p className="w-50">Sell crypto</p>
+                </button>
+                <div className="none">
+                    {popUpOpened2 === true && <PopUp2 popUpOpened2={popUpOpened2} setPopUpOpened2={setPopUpOpened2} />} 
+                </div>
             </div>
         </div>
         <div className="flex flex-col gap-[15px] w-full">

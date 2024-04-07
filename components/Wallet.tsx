@@ -2,14 +2,12 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import WalletInfo1 from './WalletInfo1';
 import WalletInfo2 from './WalletInfo2';
-import PopUp from './PopUp';
 
 const ACCOUNT_WALLET = 'accountwallet';
 const BOT_WALLET = 'botwallet';
 
 function Wallet() {
   const [selectedWallet, setSelectedWallet] = useState('accountwallet');
-  const [popUpOpened, setPopUpOpened] = useState(false)
 
   return (
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
@@ -35,10 +33,6 @@ function Wallet() {
       <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
         {selectedWallet === ACCOUNT_WALLET && <WalletInfo1 />}
         {selectedWallet === BOT_WALLET && <WalletInfo2 />}
-      </div>
-      <button onClick={() => setPopUpOpened(true)}>Test</button>
-      <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
-        {popUpOpened === true && <PopUp popUpOpened={popUpOpened} setPopUpOpened={setPopUpOpened} />}
       </div>
     </div>
   );
