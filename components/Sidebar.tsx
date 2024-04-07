@@ -1,4 +1,5 @@
 "use client";
+import { useLocation } from 'react-router-dom';
 import { Children, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
@@ -16,12 +17,13 @@ import {
   CurrencyDollarIcon,
   SparklesIcon,
 } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 
 const navigation = [
-  { name: 'Overview', href: '#', icon: HomeIcon, current: true },
-  { name: 'Wallet', href: '#', icon: WalletIcon, current: false },
-  { name: 'Explore', href: '#', icon: CurrencyDollarIcon, current: false },
-  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: false },
+  { name: 'Overview', href: '/', icon: HomeIcon, current: location.pathname === '/' },
+  { name: 'Wallet', href: 'wallet', icon: WalletIcon, current: location.pathname === '/wallet' },
+  { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: location.pathname === '/explore' },
+  { name: 'Crypture Bot', href: 'crypture-bot', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
 ]
 
 
@@ -132,12 +134,13 @@ export default function Sidebar({
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="p-5 flex grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden bg-gradient-to-r from-white to-gray-100">
+          <div className="w-[300px] p-5 flex grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden bg-gradient-to-r from-white to-gray-100">
             <div className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
+              <Image
+                src="/crypture.png"
+                width={110}
+                height={44.69}
+                alt="crypture"
               />
             </div>
             <nav className="flex flex-1 flex-col">
@@ -168,13 +171,13 @@ export default function Sidebar({
                     ))}
                   </ul>
                 </li>
-                <div>
+                <div className="m-[13px] box-border">
                   <hr className='h-[2px] my-4 opacity-[8%] bg-black'></hr>
-                  <div className="mt-auto flex flex-col items-start  justify-center gap-[2px] w-full h-auto m-[13px]">
+                  <div className="flex flex-col items-start  justify-center gap-[2px] w-[100%] h-auto box-border">
                     <span className="text-white box-size flex items-center justify-center text-text font-medium w-[40px] h-[40px] rounded-full bg-gradient-to-t from-purple-200-to-gold from-purple-200 from-0% to-gold to-70% mb-[8px]">CS</span>
                     <span className='text-text font-medium text-gray-700' aria-hidden="true">Code Sailors</span>
                     <span className='text-text font-medium text-gray-400' aria-hidden="true">@codesailors</span>
-                    <div className='flex flex-row gap-[16px]'>
+                    <div className='w-[100%] flex flex-row gap-[16px]'>
                         <div className='flex flex-row mt-[8px]'>
                           <Cog6ToothIcon className='w-[23px] h-[23px] text-purple-200 mr-[6px]'></Cog6ToothIcon>
                           <span className="text-purple-200 text-text">Settings</span>
@@ -207,8 +210,8 @@ export default function Sidebar({
           </a>
         </div>
 
-        <main className="py-10 lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+        <main className="py-10 lg:pl-[300px] box-border">
+          <div className='px-[30px]'>{children}</div>
         </main>
       </div>
     </>
