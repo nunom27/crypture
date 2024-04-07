@@ -23,7 +23,7 @@ const navigation = [
   { name: 'Overview', href: '/', icon: HomeIcon, current: location.pathname === '/' },
   { name: 'Wallet', href: '#', icon: WalletIcon, current: location.pathname === '/wallet' },
   { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: location.pathname === '/explore' },
-  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
+  { name: 'Crypture Bot', href: 'crypture-bot', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
 ]
 
 
@@ -139,7 +139,7 @@ export default function Sidebar({
               <Image
                 src="/crypture.png"
                 width={110}
-                height={200}
+                height={44.69}
                 alt="crypture"
               />
             </div>

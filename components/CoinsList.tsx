@@ -12,6 +12,7 @@ const CoinsList = async () => {
   return (
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
       <div className="text-mtitle leading-tight font-extrabold">Explore</div>
+      <div className="text-header font-extrabold mt-[20px]">Search</div>
       <form className="flex justify-start items-start w-full max-w-lg">   
           <label className="sr-only">Search</label>
           <div className="flex justify-start w-full">
