@@ -42,6 +42,10 @@ function WalletInfo2() {
                 <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
                 <span className="text-purple-200 text-text font-medium">Transfer to Account Wallet</span>
             </div>
+            <div className='flex flex-row mt-[8px]'>
+                <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
+                <span className="text-purple-200 text-text font-medium">Go to Crypture Bot</span>
+            </div>
         </div>
 
         <div className="flex flex-col gap-[15px] w-full">
