@@ -6,6 +6,7 @@ function Bot() {
 
     const [selectedCrypto, setSelectedCrypto] = useState('');
     const [selectedRisk, setSelectedRisk] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
@@ -84,7 +85,14 @@ function Bot() {
                     </div>
                 </div>
                 <span className='text-header font-extrabold mt-[10px]'>How much would you like to invest?</span>
-                <input type="number" value="0" className='outline-none border-b-[1.5px] w-auto'></input>
+                <input 
+                  type="number" 
+                  value={inputValue} 
+                  onChange={e => setInputValue(e.target.value)} 
+                  size={inputValue.length > 0 ? inputValue.length : 1}
+                  className='outline-none border-b-[1.5px] w-auto'>
+
+                </input>
             </form>
         </div>
     );
