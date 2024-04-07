@@ -41,8 +41,8 @@ function TradingViewWidget() {
   return (
     <div className="tradingview-widget-container" style={{ height: "100%", width: "100%" }}>
       <div className='flex flex-col gap-3 my-6'>
-        <span className='text-header font-bold'>Choose the cryptocurrency:</span>
-        <select className='w-40 h-auto px-4 py-2 rounded-[15px]' value={selectedCurrency} onChange={e => setSelectedCurrency(e.target.value)}>
+        <span className='text-header font-bold'>Choose a cryptocurrency to view below</span>
+        <select className='bg-gray-100 w-[350px] h-auto px-[16px] py-[12px] rounded-[15px]' value={selectedCurrency} onChange={e => setSelectedCurrency(e.target.value)}>
           <option value="BTCUSD">BTCUSD</option>
           <option value="BTCUSDT">BTCUSDT</option>
           <option value="ETHUSD">ETHUSD</option>
@@ -53,7 +53,8 @@ function TradingViewWidget() {
           <option value="DOGEUSDT">DOGEUSDT</option>
         </select>
       </div>
-      <div ref={chartContainer} className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%"}}></div>
+      <div ref={chartContainer} className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%", marginTop: "15px", marginBottom: "15px",}}></div>
+      <span className='text-text font-medium opacity-50'>Powered by TradingView</span>
     </div>
   );
 }
