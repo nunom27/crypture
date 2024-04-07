@@ -82,7 +82,7 @@ function WalletInfo2() {
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{new Date(transaction.date * 1000).toLocaleString()}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.from}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.to}</div>
-                    <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.amount} {transaction.from}</div>
+                    <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.amount} {transaction.to}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.rate}$</div>
                 </div>
             ))}

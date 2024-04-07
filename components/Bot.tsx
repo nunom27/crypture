@@ -10,8 +10,9 @@ function Bot() {
   const [selectedRisk, setSelectedRisk] = useState(-1);
   const [selectedCapital, setSelectedCapital] = useState("");
   const [balanceFiat, setBalanceFiat] = useState<number>(0.0);
-  const [balanceCrpyto, setBalanceCrypto] = useState<number>(0.0);
+  const [balanceCrypto, setBalanceCrypto] = useState<number>(0.0);
   const [bot, setBot] = useState<{ [key: string]: number | string }>({});
+  const [botStatusVar, setBotStatusVar] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,17 +26,22 @@ function Bot() {
       setBalanceCrypto(responseBalanceCrypto.data);
       const responseBot = await axios.get("http://127.0.0.1:5000/get_bot");
       setBot(responseBot.data);
+      setBotStatusVar(responseBot.data["status"]);
     };
     fetchData();
-  }, []);
+    const intervalId = setInterval(fetchData, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [botStatusVar]);
 
   const updateBot = async (event: any) => {
-    event.preventDefault(); // Prevent the form from refreshing the page
+    // event.preventDefault(); // Prevent the form from refreshing the page
     try {
       const response2 = await axios.post(
         "http://127.0.0.1:5000/transfer_money_to_bot",
         {
           amount: selectedCapital,
+          coin: bot["coin"]
           // Add other data to send in the request body
         }
       );
@@ -47,6 +53,7 @@ function Bot() {
           status: "active",
           // Add other data to send in the request body
         });
+        setBotStatusVar("active");
         console.log("Data posted:", response.data);
         // Handle the response if needed
       } catch (error) {
@@ -57,6 +64,43 @@ function Bot() {
     }
   };
 
+  const setBotStatus = async (status: string) => {
+    console.log("Setting bot status to:", status);
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/update_bot", {
+        status: status,
+      });
+      setBotStatusVar(status);
+      console.log("Data posted:", response.data);
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  };
+
+  const stopInvestment = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/update_bot", {
+        status: "inactive"
+      });
+      setBotStatusVar("inactive");
+      try {
+        const response2 = await axios.post("http://127.0.0.1:5000/transfer_money_from_bot", {
+          amount: balanceFiat
+        });
+        try {
+          const response3 = await axios.post("http://127.0.0.1:5000/transfer_money_from_bot", {
+            amount: balanceCrypto
+          });
+        } catch (error) {
+          console.error("Error posting data:", error);
+        }
+      } catch (error) {
+        console.error("Error posting data:", error);
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  }
   return (
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
       <div className="text-mtitle leading-tight font-extrabold">
@@ -79,7 +123,7 @@ function Bot() {
             <span className="text-black text-text font-bold">BOT COIN</span>
           </div>
           <div className="flex flex-row">
-            <span className="text-ltitle font-extrabold">{balanceCrpyto}</span>
+            <span className="text-ltitle font-extrabold">{balanceCrypto}</span>
             <span className="text-ltitle font-medium">{bot["coin"]}</span>
           </div>
           <span className="text-text font-medium mt-[5px] opacity-50">
@@ -187,10 +231,10 @@ function Bot() {
           >
             <span className="text-text font-bold">Low risk</span>
             <span>Description</span>
-            <span className="mt-[15px]">
+            {/* <span className="mt-[15px]">
               <span className="text-text font-bold">Performance: </span>
               percentage
-            </span>
+            </span> */}
           </div>
           <div
             onClick={() => setSelectedRisk(1)}
@@ -205,10 +249,10 @@ function Bot() {
           >
             <span className="text-text font-bold">Average risk</span>
             <span>Description</span>
-            <span className="mt-[15px]">
+            {/* <span className="mt-[15px]">
               <span className="text-text font-bold">Performance: </span>
               percentage
-            </span>
+            </span> */}
           </div>
           <div
             onClick={() => setSelectedRisk(2)}
@@ -223,10 +267,10 @@ function Bot() {
           >
             <span className="text-text font-bold">High risk</span>
             <span>Description</span>
-            <span className="mt-[15px]">
+            {/* <span className="mt-[15px]">
               <span className="text-text font-bold">Performance: </span>
               percentage
-            </span>
+            </span> */}
           </div>
         </div>
         <span className="text-header font-extrabold mt-[10px]">
@@ -254,32 +298,38 @@ function Bot() {
           Done
         </button>
       </form>
-      <div className="w-full flex flex-col gap-[2px]">
-        <div className="bg-black w-full h-[1.5px] opacity-10 my-[10px]"></div>
-        <div className="text-text font-extrabold opacity-50">
-          PAUSE THIS INVESTMENT
+      {botStatusVar == "active" ? (
+        <div className="w-full flex flex-col gap-[2px]">
+          <div className="bg-black w-full h-[1.5px] opacity-10 my-[10px]"></div>
+          <div className="text-text font-extrabold opacity-50">
+            PAUSE THIS INVESTMENT
+          </div>
+          <div className="text-text font-medium opacity-50">
+            Stops all Crypture Bot actions while keeping the cyrptocurrency in
+            the Bot Wallet.
+          </div>
+          <button onClick={() => setBotStatus("inactive")} className="w-[200px] px-[16px] py-[10px] bg-gray-500 rounded-[10px] text-white text-text mt-[20px]">
+            Pause now
+          </button>
         </div>
-        <div className="text-text font-medium opacity-50">
-          Stops all Crypture Bot actions while keeping the cyrptocurrency in the
-          Bot Wallet.
+      ) : (
+        <div className="w-full flex flex-col gap-[2px]">
+          <div className="bg-black w-full h-[1.5px] opacity-10 my-[10px]"></div>
+          <div className="text-text font-extrabold opacity-50">
+            RESUME THIS INVESTMENT
+          </div>
+          <div className="text-text font-medium opacity-50">
+            Resumes Crypture Bot actions with the cyrptocurrency currently
+            stored the Bot Wallet.
+          </div>
+          <button
+            onClick={() => setBotStatus("active")}
+            className="w-[200px] px-[16px] py-[10px] bg-gray-500 rounded-[10px] text-white text-text mt-[20px]"
+          >
+            Resume now
+          </button>
         </div>
-        <button className="w-[200px] px-[16px] py-[10px] bg-gray-500 rounded-[10px] text-white text-text mt-[20px]">
-          Pause now
-        </button>
-      </div>
-      <div className="w-full flex flex-col gap-[2px]">
-        <div className="bg-black w-full h-[1.5px] opacity-10 my-[10px]"></div>
-        <div className="text-text font-extrabold opacity-50">
-          RESUME THIS INVESTMENT
-        </div>
-        <div className="text-text font-medium opacity-50">
-          Resumes Crypture Bot actions with the cyrptocurrency currently stored
-          the Bot Wallet.
-        </div>
-        <button className="w-[200px] px-[16px] py-[10px] bg-gray-500 rounded-[10px] text-white text-text mt-[20px]">
-          Pause now
-        </button>
-      </div>
+      )}
       <div className="w-full flex flex-col gap-[2px]">
         <div className="bg-black w-full h-[1.5px] opacity-10 my-[10px]"></div>
         <div className="text-text font-extrabold opacity-50">
@@ -290,7 +340,7 @@ function Bot() {
           delete your investment with Crypture Bot. You can start a new one at
           any time.
         </div>
-        <button className="w-[200px] px-[16px] py-[10px] bg-red-300 rounded-[10px] text-white text-text mt-[20px]">
+        <button  className="w-[200px] px-[16px] py-[10px] bg-red-300 rounded-[10px] text-white text-text mt-[20px]">
           Stop now
         </button>
       </div>

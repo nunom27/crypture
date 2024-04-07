@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import json
 import os
 from threading import Lock
@@ -26,7 +26,7 @@ init_user = {
         "coin": "BTC",
         "target": 0.0,
         "risk": 1,
-        "balance_fiat": 1000.0,
+        "balance_fiat": 0.0,
         "balance_crypto": 0.0
     }
 }
@@ -133,7 +133,7 @@ def withdraw_money():
 def deposit_money():
     with lock:
         user = get_user()
-        coin = request.json.get('coin', "BTC")
+        coin = request.json.get('coin', "USD")
         amount = request.json.get('amount', 0.0)
         try:
             user["balance"][coin] += amount
@@ -147,15 +147,15 @@ def deposit_money():
 def transfer_money_to_bot():
     with lock:
         user = get_user()
-        coin = request.json.get('coin', "BTC")
+        coin = request.json.get('coin', "USD")
         amount = request.json.get('amount', 0.0)
-        if user["balance"].get(coin, 0.0) < amount:
+        if user["balance"].get(coin, 0.0) < float(amount):
             return jsonify({"error": "Not enough balance"})
-        user["balance"][coin] -= amount
+        user["balance"][coin] -= float(amount)
         if coin == "USD":
-            user["bot"]["balance_fiat"] += amount
+            user["bot"]["balance_fiat"] += float(amount)
         else:
-            user["bot"]["balance_crypto"] += amount
+            user["bot"]["balance_crypto"] += float(amount)
         update_user(user)
     return jsonify(user)
 

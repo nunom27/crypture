@@ -12,6 +12,8 @@ import {
 function WalletInfo1() {
     const [transactions, setTransactions] = useState([]);
     const [balances, setBalances] = useState<{ [key: string]: number }>({});
+    const [loadData, setLoadData] = useState(false); // New state variable
+
     
     useEffect(() => {
         const fetchData = async () => {
@@ -22,7 +24,38 @@ function WalletInfo1() {
             console.log(responseBalances.data);
         }
         fetchData();
-    }, []);
+        if (loadData) {
+            setLoadData(false);
+        }
+    }, [loadData]);
+
+
+    const addMoney = async () => {
+        // console.log("Setting bot status to:", status);
+        try {
+          const response = await axios.post("http://127.0.0.1:5000/deposit_money", {
+            amount: 100
+          });
+          console.log("Data posted:", response.data);
+        } catch (error) {
+          console.error("Error posting data:", error);
+        }
+        setLoadData(true);
+      };
+
+      const removeMoney = async () => {
+        // console.log("Setting bot status to:", status);
+        try {
+          const response = await axios.post("http://127.0.0.1:5000/withdraw_money", {
+            amount: 100
+          });
+          console.log("Data posted:", response.data);
+        } catch (error) {
+          console.error("Error posting data:", error);
+        }
+        setLoadData(true);
+      };
+
   return(
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
         <div className='flex flex-row w-full gap-[10px]'>
@@ -54,14 +87,14 @@ function WalletInfo1() {
             </div>
         </div>
         <div className="flex flex-row gap-[15px]">
-            <div className='flex flex-row mt-[8px]'>
+            <button onClick={() => addMoney()} className='flex flex-row mt-[8px]'>
                 <PlusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></PlusIcon>
-                <span className="text-purple-200 text-text font-medium">Buy crypto</span>
-            </div>
-            <div className='flex flex-row mt-[8px]'>
+                <span className="text-purple-200 text-text font-medium">Deposit</span>
+            </button>
+            <button onClick={() => removeMoney()} className='flex flex-row mt-[8px]'>
                 <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
-                <span className="text-purple-200 text-text font-medium">Sell crypto</span>
-            </div>
+                <span className="text-purple-200 text-text font-medium">Withdraw</span>
+            </button>
         </div>
         <div className="flex flex-col gap-[15px] w-full">
             <span className='text-header font-bold'>Transaction History</span>
@@ -78,7 +111,7 @@ function WalletInfo1() {
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{new Date(transaction.date * 1000).toLocaleString()}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.from}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.to}</div>
-                    <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.amount} {transaction.from}</div>
+                    <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.amount} {transaction.to}</div>
                     <div className="flex w-[20%] h-[50px] items-center text-black text-text font-medium box-border pl-[15px]">{transaction.rate}$</div>
                 </div>
             ))}
