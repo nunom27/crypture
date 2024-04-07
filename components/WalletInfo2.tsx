@@ -8,8 +8,6 @@ import {
     PlusIcon,
     MinusIcon,
     ArrowRightIcon
-    MinusIcon,
-    ArrowRightIcon
   } from '@heroicons/react/24/outline'
 
 

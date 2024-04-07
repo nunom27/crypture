@@ -36,14 +36,14 @@ export default function PopUp1({ setPopUpOpened1, popUpOpened1 }: { setPopUpOpen
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-mtitle font-bold leading-6 text-gray-900 text-left">
-                      Payment successful
+                      Transaction
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500 text-left">
                         Buy over 100 crypto currencies with USDs.
                       </p>
                       <span className='text-text font-bold'>Choose currency</span>
-
+                      <input type='number'></input>
                     </div>
                   </div>
                 </div>
