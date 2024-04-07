@@ -21,7 +21,7 @@ import Image from 'next/image'
 
 const navigation = [
   { name: 'Overview', href: '/', icon: HomeIcon, current: location.pathname === '/' },
-  { name: 'Wallet', href: '#', icon: WalletIcon, current: location.pathname === '/wallet' },
+  { name: 'Wallet', href: 'wallet', icon: WalletIcon, current: location.pathname === '/wallet' },
   { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: location.pathname === '/explore' },
   { name: 'Crypture Bot', href: 'crypture-bot', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
 ]
