@@ -7,6 +7,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -45,13 +46,13 @@ const config: Config = {
       },
     },
     fontSize: {
-      'xltitle': '60px',
-      'ltitle': '40px',
-      'mtitle': '31px',
-      'header': '26px',
-      'headline': '22px',
-      'text': '18px',
-      'subtext': '15px',
+      'xltitle': '58px',
+      'ltitle': '38px',
+      'mtitle': '29px',
+      'header': '24px',
+      'headline': '20px',
+      'text': '16px',
+      'subtext': '13px',
     },
   },
   plugins: [],
