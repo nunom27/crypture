@@ -2,13 +2,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { SparklesIcon } from '@heroicons/react/24/solid'
-
+import PopUp3 from './PopUp3';
+import PopUp4 from './PopUp4';
 import {
     PlusIcon,
-    MinusIcon
+    MinusIcon,
+    ArrowRightIcon
   } from '@heroicons/react/24/outline'
 
+
 function WalletInfo2() {
+    const [popUpOpened3, setPopUpOpened3] = useState(false)
+    const [popUpOpened4, setPopUpOpened4] = useState(false)
+
   return(
     <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
         <div className='flex flex-row w-full gap-[10px]'>
@@ -33,18 +39,30 @@ function WalletInfo2() {
             </div>
         </div>
 
-        <div className="flex flex-row gap-[15px]">
+        <div className="flex flex-row gap-[20px]">
             <div className='flex flex-row mt-[8px]'>
-                <PlusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></PlusIcon>
-                <span className="text-purple-200 text-text font-medium">Add to Crypture Bot</span>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened3(true)}>
+                    <PlusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></PlusIcon>
+                    <p className="w-50">Add to Crypture Bot</p>
+                </button>
+                <div className="none">
+                    {popUpOpened3 === true && <PopUp3 popUpOpened3={popUpOpened3} setPopUpOpened3={setPopUpOpened3} />} 
+                </div>
             </div>
             <div className='flex flex-row mt-[8px]'>
-                <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
-                <span className="text-purple-200 text-text font-medium">Transfer to Account Wallet</span>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened4(true)}>
+                    <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
+                    <p className="w-50">Transfer to Account Wallet</p>
+                </button>
+                <div className="none">
+                    {popUpOpened4 === true && <PopUp4 popUpOpened4={popUpOpened4} setPopUpOpened4={setPopUpOpened4} />} 
+                </div>
             </div>
             <div className='flex flex-row mt-[8px]'>
-                <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
-                <span className="text-purple-200 text-text font-medium">Go to Crypture Bot</span>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened4(true)}>
+                    <ArrowRightIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></ArrowRightIcon>
+                    <p className="w-50">Go to Crypture Bot</p>
+                </button>
             </div>
         </div>
 
