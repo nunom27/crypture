@@ -19,7 +19,7 @@ empty_transaction = {
 }
 
 init_user = {
-    "balance": {},
+    "balance": {"BTC": 0.0},
     "transactions": [],
     "bot": {
         "status": "inactive",
@@ -78,10 +78,21 @@ def get_balance():
     user = get_user()
     owner = request.args.get('owner', "user")
     coin = request.args.get('coin', "BTC")
-    if owner == "bot":
-        return jsonify(user["bot"]["balance"])
+    if owner == "bot" and coin == "USD":
+        return jsonify(user["bot"]["balance_fiat"])
+    elif owner == "bot" and coin != "USD":
+        return jsonify(user["bot"]["balance_crypto"])
     else:
         return jsonify(user["balance"].get(coin, 0.0))
+
+@app.route("/get_balances")
+def get_balances():
+    user = get_user()
+    owner = request.args.get('owner', "user")
+    if owner == "bot":
+        return jsonify(user["bot"])
+    else:
+        return jsonify(user["balance"])
 
 
 @app.route("/get_transactions")
@@ -153,7 +164,7 @@ def transfer_money_to_bot():
 def transfer_money_from_bot():
     with lock:
         user = get_user()
-        coin = request.json.get('coin', "BTC")
+        coin = request.json.get('coin', "USD")
         amount = request.json.get('amount', 0.0)
         if user["bot"]["balance"] < amount:
             return jsonify({"error": "Not enough balance"})
