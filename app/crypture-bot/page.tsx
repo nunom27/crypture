@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <Sidebar>
       <div className="w-full">
-        <Wallet>
+        <Bot>
 
-        </Wallet>
+        </Bot>
       </div>
     </Sidebar>
   );
