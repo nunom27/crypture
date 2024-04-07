@@ -25,9 +25,36 @@ function Wallet() {
                         <CircleStackIcon className='w-[20px] h-[20px] text-black mr-[6px]'></CircleStackIcon>
                         <span className="text-black text-text font-extrabold">YOUR ASSETS</span>
                     </div>
-
+                    <div className='flex flex-row justify-start items-center mt-[10px]'>
+                        <div className='bg-black size-[50px] rounded-[50%] mr-[15px]'></div>
+                        <div>
+                            <span className='font-extrabold text-headline'>value</span>
+                            <span className='font-medium text-headline'>abbreviation</span>
+                            <br></br>
+                            <span className='font-medium text-text opacity-50'>coin name</span>
+                        </div>
+                    </div>
+                    <div className='flex flex-row justify-start items-center mt-[10px]'>
+                        <div className='bg-black size-[50px] rounded-[50%] mr-[15px]'></div>
+                        <div>
+                            <span className='font-extrabold text-headline'>value</span>
+                            <span className='font-medium text-headline'>abbreviation</span>
+                            <br></br>
+                            <span className='font-medium text-text opacity-50'>coin name</span>
+                        </div>
+                    </div>
+                    <div className='flex flex-row justify-start items-center mt-[10px]'>
+                        <div className='bg-black size-[50px] rounded-[50%] mr-[15px]'></div>
+                        <div>
+                            <span className='font-extrabold text-headline'>value</span>
+                            <span className='font-medium text-headline'>abbreviation</span>
+                            <br></br>
+                            <span className='font-medium text-text opacity-50'>coin name</span>
+                        </div>
+                    </div>
                 </div>
              </div>
+             <span className='text-header font-extrabold'>Transaction History</span>
         </div>
         );
 }
