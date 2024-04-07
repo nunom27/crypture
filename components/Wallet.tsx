@@ -1,46 +1,45 @@
 "use client";
-import { Sanchez } from 'next/font/google';
-// TradingViewWidget.jsx
 import { SetStateAction, useEffect, useRef, useState } from 'react';
-import {
-    CurrencyDollarIcon,
-    CircleStackIcon,
-  } from '@heroicons/react/24/solid'
-import axios from 'axios';
+import WalletInfo1 from './WalletInfo1';
+import WalletInfo2 from './WalletInfo2';
+
+const ACCOUNT_WALLET = 'accountwallet';
+const BOT_WALLET = 'botwallet';
 
 function Wallet() {
-    const [data, setData] = useState(null);
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get("http://127.0.0.1:5000/get_balance?coin=USD");
-            setData(response.data);
-        }
-        fetchData();
-    }, []);
+  const [selectedWallet, setSelectedWallet] = useState('accountwallet');
 
-
-    return(
-        <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
-             <div className="text-mtitle leading-tight font-extrabold gap-[15px]">Wallet</div>
-             <div className='flex flex-row w-full gap-[10px]'>
-                <div className="flex flex-col gap-[5px] w-[50%] h-auto rounded-[15px] bg-gray-100 p-[20px] text-black">
-                        <div className='flex flex-row mt-[8px]'>
-                          <CurrencyDollarIcon className='w-[20px] h-[20px] text-black mr-[6px]'></CurrencyDollarIcon>
-                          <span className="text-black text-text font-extrabold">YOUR BALANCE</span>
-                        </div>
-                    <span className='text-ltitle font-extrabold'>{data}$</span>
-                    <span className='text-text font-medium mt-[5px] opacity-50'>This is the combined value in USD of all your cryptocurrency.</span>
-                </div>
-                <div className="flex flex-col gap-[5px] w-[50%] h-auto rounded-[15px] bg-gray-100 p-[20px] text-black">
-                    <div className='flex flex-row mt-[8px]'>
-                        <CircleStackIcon className='w-[20px] h-[20px] text-black mr-[6px]'></CircleStackIcon>
-                        <span className="text-black text-text font-extrabold">YOUR ASSETS</span>
-                    </div>
-
-                </div>
-             </div>
-        </div>
-        );
+  return (
+    <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
+      <div className="text-mtitle leading-tight font-extrabold gap-[15px]">Wallet</div>
+        <div className="flex flex-row gap-[10px]">
+          <div 
+              onClick={() => setSelectedWallet(ACCOUNT_WALLET)}
+              style={{backgroundColor: selectedWallet === ACCOUNT_WALLET ? '#901BC7' : '#F3F4F6',
+                      color: selectedWallet === ACCOUNT_WALLET ? '#FFFFFF' : '#000000'}}
+              className='w-auto h-[50px] px-[16px] rounded-[25px] flex flex-col items-center justify-center text-text'
+          >
+              <span className='text-text font-bold'>Account Wallet</span>
+          </div>
+          <div 
+              onClick={() => setSelectedWallet(BOT_WALLET)}
+              style={{backgroundColor: selectedWallet === BOT_WALLET ? '#901BC7' : '#F3F4F6',
+                      color: selectedWallet === BOT_WALLET ? '#FFFFFF' : '#000000'}}
+              className='w-auto h-[50px] px-[16px] rounded-[25px] flex flex-col items-center justify-center text-text'
+          >
+              <span className='text-text font-bold'>Bot Wallet</span>
+          </div>
+      </div>
+      <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
+        {/* Your other code here */}
+        {selectedWallet === ACCOUNT_WALLET && <WalletInfo1 />}
+        {selectedWallet === BOT_WALLET && <WalletInfo2 />}
+      </div>
+    </div>
+  );
 }
+
 export default Wallet;
+
+
+
