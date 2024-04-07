@@ -38,12 +38,29 @@ export default function PopUp1({ setPopUpOpened1, popUpOpened1 }: { setPopUpOpen
                     <Dialog.Title as="h3" className="text-mtitle font-bold leading-6 text-gray-900 text-left">
                       Transaction
                     </Dialog.Title>
-                    <div className="mt-2">
+                    <div className="mt-3 flex flex-col gap-5 items-start justify-start">
                       <p className="text-sm text-gray-500 text-left">
                         Buy over 100 crypto currencies with USDs.
                       </p>
-                      <span className='text-text font-bold'>Choose currency</span>
-                      <input type='number'></input>
+                      <div className="flex flex-col gap-1 justify-start items-start">
+                        <span className='text-text font-bold'>Choose currency</span>
+                        <select className='bg-gray-100 w-[350px] h-auto px-[16px] py-[12px] rounded-[15px]' /* value={selectedCurrency} onChange={e => setSelectedCurrency(e.target.value)}*/>
+                          <option value="BTCUSD">BTCUSD</option>
+                          <option value="ETHUSD">ETHUSD</option>
+                          <option value="SOLUSD">SOLUSD</option>
+                          <option value="DOGEUSD">DOGEUSD</option>
+                        </select>
+                      </div>
+                      <div className="flex flex-col justify-start items-start">
+                        <span className='text-text font-bold'>Choose the amount you want to buy</span>
+                        <input 
+                          type="number"
+                          // value={BoughtCapital}
+                          // onChange={e => setBoughtCapital(e.target.value)}
+                          min="0"
+                          max="10000" 
+                          className='outline-none border-b-[1.5px] w-[300px] text-headline'></input>
+                      </div>
                     </div>
                   </div>
                 </div>

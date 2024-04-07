@@ -69,7 +69,7 @@ function WalletInfo1() {
                 </div>
             </div>
             <div className='flex flex-row mt-[8px]'>
-                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened1(true)}>
+                <button className="text-purple-200 text-text font-medium w-auto flex justify-center items-center" onClick={() => setPopUpOpened2(true)}>
                     <MinusIcon className='w-[20px] h-[20px] text-purple-200 mr-[6px]'></MinusIcon>
                     <p className="w-50">Sell crypto</p>
                 </button>
