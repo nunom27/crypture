@@ -5,10 +5,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <Sidebar>
-      <div className="text-mtitle leading-tight font-bold mb-[10px]">
-        <span className="bg-gradient-to-r from-purple-200 to-gold inline-block text-transparent bg-clip-text">Good morning,</span> <br></br> Code Sailors
+      <div className="text-mtitle leading-tight font-extrabold"><span className="bg-gradient-to-r from-purple-200 to-gold inline-block text-transparent bg-clip-text">Good morning,</span> <br></br> Heitor</div>
+      <div className="h-[500px]">
+        <CoinCharts />
+
       </div>
-      <span className="text-text">Nothing to show for now.</span>
     </Sidebar>
   );
 }
