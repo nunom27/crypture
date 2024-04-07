@@ -1,4 +1,5 @@
 "use client";
+import { useLocation } from 'react-router-dom';
 import { Children, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
@@ -16,12 +17,13 @@ import {
   CurrencyDollarIcon,
   SparklesIcon,
 } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 
 const navigation = [
-  { name: 'Overview', href: '/', icon: HomeIcon, current: true },
-  { name: 'Wallet', href: '#', icon: WalletIcon, current: false },
-  { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: false },
-  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: false },
+  { name: 'Overview', href: '/', icon: HomeIcon, current: location.pathname === '/' },
+  { name: 'Wallet', href: '#', icon: WalletIcon, current: location.pathname === '/wallet' },
+  { name: 'Explore', href: 'explore', icon: CurrencyDollarIcon, current: location.pathname === '/explore' },
+  { name: 'Crypture Bot', href: '#', icon: SparklesIcon, current: location.pathname === '/crypture-bot' },
 ]
 
 
@@ -134,10 +136,11 @@ export default function Sidebar({
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="w-[300px] p-5 flex grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden bg-gradient-to-r from-white to-gray-100">
             <div className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
+              <Image
+                src="/crypture.png"
+                width={110}
+                height={200}
+                alt="crypture"
               />
             </div>
             <nav className="flex flex-1 flex-col">
@@ -207,8 +210,8 @@ export default function Sidebar({
           </a>
         </div>
 
-        <main className="py-10 lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+        <main className="py-10 lg:pl-[300px] box-border">
+          <div className='px-[30px]'>{children}</div>
         </main>
       </div>
     </>

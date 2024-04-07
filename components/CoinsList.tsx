@@ -10,7 +10,8 @@ const CoinsList = async () => {
   });
 
   return (
-    <div className="flex flex-col justify-start items-start w-screen h-auto gap-10">
+    <div className="flex flex-col justify-start items-start gap-10 w-full max-w-[1600px] mx-auto">
+      <div className="text-mtitle leading-tight font-extrabold">Explore</div>
       <form className="flex justify-start items-start w-full max-w-lg">   
           <label className="sr-only">Search</label>
           <div className="flex justify-start w-full">
@@ -22,13 +23,13 @@ const CoinsList = async () => {
               </svg>Search
           </button>
       </form>
-      <div className="flex flex-wrap w-[calc(100% - 32px)]">
+      <div className="flex flex-wrap gap-[5px]">
         {data.map((item: any, index: number) => {
           return (
-            <div key={index}>
+            <div className="w-[32%]" key={index}>
               <button
                 type="button"
-                className="flex items-center gap-[20px] w-[100%] min-w-[300px] h-auto rounded-[15px] bg-gray-100 text-text text-black hover:bg-gray-200 box-border p-[16px] border-none"
+                className="flex text-left items-center gap-[20px] w-full h-auto rounded-[15px] bg-gray-100 text-text text-black hover:bg-gray-200 box-border p-[16px] border-none"
               >
                 <Image src={item.image} alt={item.name} width={50} height={50} />
                 <h2 className="text-text font-medium max-w-full hover:overflow-visible hover:text-wrap hover:whitespace-normal">{item.name}</h2>

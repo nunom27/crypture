@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <Sidebar>
-      <div className="w-screen">
+      <div className="w-full">
         <CoinsList />
       </div>
     </Sidebar>
